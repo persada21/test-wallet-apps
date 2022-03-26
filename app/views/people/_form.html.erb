@@ -1,0 +1,36 @@
+
+<div class="row">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-body p-0">
+        <%= bootstrap_form_for(@person) do |form| %>
+          <div class="card-body">
+
+            <%= form.text_field :first_name %>
+
+            <%= form.text_field :last_name %>
+
+            <%= form.date_field :birth_date %>
+
+            <%= form.select(:gender, Person.genders, {:include_blank => false}, {:class => "custom-select"}) %>
+
+            <%= form.number_field :height %>
+
+            <%= form.number_field :weight %>
+
+            <%= form.text_area :description, size: "24x6" %>
+
+            <%= form.check_box :activation %>
+
+          </div>
+          <!-- /.card-body -->
+
+          <div class="card-footer">
+            <button type="submit" class="btn btn-primary">Submit</button>
+            <%= link_to 'Cancel', people_path, class: "btn btn-default float-right" %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
