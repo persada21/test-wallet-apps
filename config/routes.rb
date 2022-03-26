@@ -1,10 +1,10 @@
 Rails.application.routes.draw do
-  resources :people
-  root 'people#index'
+  resources :accounts
+  resources :top_ups
+  resources :transfers
+  resources :transactions
+  resources :users
+  resources :withdraws
 
-  namespace :api do
-    defaults format: :json do
-      get 'people/search', to: 'people#search'
-    end
-  end
+  root 'users#index'
 end

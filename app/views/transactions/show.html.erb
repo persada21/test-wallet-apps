@@ -1,0 +1,78 @@
+<% if flash[:notice] %>
+  <div class="alert alert-primary alert-dismissible">
+    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+    <h5><i class="icon fas fa-info"></i>Info</h5>
+    <%= notice %>
+  </div>
+<% end %>
+
+<div class="card card-secondary">
+  <div class="card-header">
+    <h3 class="card-title">Transaction History Details #<%= @transaction.id %></h3>
+  </div>
+  <div class="col-12">
+    <div class="table-responsive">
+      <table class="table">
+        <tbody>
+        <tr>
+          <th>Subject:</th>
+          <td><%= @transaction.subject.capitalize %></td>
+        </tr>
+        <tr>
+          <th>Amount:</th>
+          <td><%= @transaction.grant.amount %></td>
+        </tr>
+        <tr>
+          <th>Grant Type</th>
+          <td><%= @transaction.grant_type %></td>
+        </tr>
+        <tr>
+          <th>Transactable Type</th>
+          <td><%= @transaction.transactable_type %></td>
+        </tr>
+
+        <tr>
+          <th>Created At</th>
+          <td><%= @transaction.created_at&.strftime("%d %b %Y %H:%M:%S") %></td>
+        </tr>
+      </tbody></table>
+    </div>
+  </div>
+  <br>
+  <div class="col-12">
+    <div class="table-responsive">
+      <table class="table">
+        <tbody>
+        <tr>
+          <th>Sender Address:</th>
+          <td><%= @transaction.sender_address %></td>
+        </tr>
+        <tr>
+          <th>Amount:</th>
+          <td><%= @transaction.grant.amount %></td>
+        </tr>
+        <tr>
+          <th>Grant Type</th>
+          <td><%= @transaction.grant_type %></td>
+        </tr>
+        <tr>
+          <th>Transactable Type</th>
+          <td><%= @transaction.transactable_type %></td>
+        </tr>
+        <tr>
+          <th>Receiver Address</th>
+          <td><%= @transaction.receiver_address %></td>
+        </tr>
+
+        <tr>
+          <th>Created At</th>
+          <td><%= @transaction.created_at&.strftime("%d %b %Y %H:%M:%S") %></td>
+        </tr>
+      </tbody></table>
+    </div>
+  </div>
+</div>
+
+
+<%= link_to 'Edit', edit_transaction_path(@transaction), class: "btn btn-warning" %>
+<%= link_to 'Back', transactions_path, class: "btn btn-default" %>

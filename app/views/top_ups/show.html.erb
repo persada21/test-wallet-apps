@@ -1,0 +1,31 @@
+<% if flash[:notice] %>
+  <div class="alert alert-primary alert-dismissible">
+    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+    <h5><i class="icon fas fa-info"></i>Info</h5>
+    <%= notice %>
+  </div>
+<% end %>
+
+<div class="card card-secondary">
+  <div class="card-header">
+    <h3 class="card-title">Top Up #<%= @top_up.id %></h3>
+  </div>
+  <div class="col-12">
+    <div class="table-responsive">
+      <table class="table">
+        <tbody><tr>
+          <th>Amount:</th>
+          <td><%= @top_up.amount %></td>
+        </tr>
+        <tr>
+          <th>Created At</th>
+          <td><%= @top_up.created_at&.strftime("%d %b %Y") %></td>
+        </tr>
+      </tbody></table>
+    </div>
+  </div>
+</div>
+
+
+<%= link_to 'Edit', edit_top_up_path(@top_up), class: "btn btn-warning" %>
+<%= link_to 'Back', top_ups_path, class: "btn btn-default" %>

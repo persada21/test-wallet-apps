@@ -1,0 +1,66 @@
+<% if flash[:notice] %>
+  <div class="alert alert-primary alert-dismissible">
+    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+    <h5><i class="icon fas fa-info"></i>Info</h5>
+    <%= notice %>
+  </div>
+<% end %>
+
+<h3>Withdraw</h3>
+<br>
+
+<%= link_to 'Create New', new_withdraw_path, class: "btn btn-success btn-xs", style: "width: 100px" %>
+<br><br>
+<%= search_form_for @search, url: withdraws_path do |f| %>
+  <div class="input-group">
+    <span class="input-group-append">  
+      <%= f.search_field :id_cont, class: 'form-control', placeholder: 'Top Up'%>
+    </span>
+    <span class="input-group-append">
+      <button type="submit" class="btn btn-primary btn-flat">Search</button>
+    </span>
+  </div>
+<% end %>
+<br>
+<div id="people-table">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-body p-0">
+          <table class="table table-bordered table-striped table-hover">
+            <thead>
+              <tr>
+                <th style="width: 10px">#</th>
+                <th>Receiver Address</th>
+                <th>Amount</th>
+                <th style="width: 120px">Created At</th>
+                <th colspan="2"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @withdraws.each do |withdraw| %>
+                <tr>
+                  <td><%= withdraw.id %></td>
+                  <td><%= withdraw.receiver_number %></td>
+                  <td><%= withdraw.amount %></td>
+                  <td><%= withdraw.created_at&.strftime('%Y %m %d') %></td>
+                 
+                  <td style="width: 60px">
+                    <%= link_to 'Show', withdraw, class: "btn btn-primary btn-xs", style: "width: 50px" %>
+                  </td>
+                  <td style="width: 60px">
+                    <%= link_to 'Delete', withdraw, class: "btn btn-danger btn-xs", style: "width: 50px", method: :delete, data: { confirm: 'Are you sure?' } %>
+                  </td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+        <!-- /.card-body -->
+      </div>
+      <!-- /.card -->
+    </div>
+  </div>
+</div>
+<div id="search-results">
+</div>

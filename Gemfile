@@ -63,5 +63,5 @@ gem "bootstrap_form", "~> 4.0"
 gem 'draper'
 gem 'awesome_print', require: 'ap'
 gem 'turbolinks_render'
-# gem 'pg_search' # for postgresql only
 gem "ransack", "~> 2.6"
+gem 'enumerize'

@@ -1,24 +1,21 @@
-number_of_person = 30
-puts "Seeding Person"
+puts "Seeding Data"
 puts "=============="
 puts
-(1..number_of_person).each do |i|
-  p = Person.new
-  p.first_name = Faker::Name.unique.first_name
-  p.last_name = Faker::Name.unique.last_name
-  p.birth_date = rand(10.years).seconds.ago
-  g = rand(0..1)
-  p.gender = if g == 0
-    'female'
-  else
-    'male'
-  end
-  p.height = rand(80..200)
-  p.weight = rand(20..200)
-  p.description = Faker::Books::Dune.saying
-  p.save
-  putc '.'
+10.times do |index|
+  User.create(
+    username: "lorem_user_#{index}",
+    name: Faker::Name.unique.name,
+    phone_number: Faker::PhoneNumber.unique.cell_phone_in_e164
+  )
 end
+
+Stock.create(name: 'Top Up 1', code: 'tp01', stock_type: :deposit, balance: 3500)
+Stock.create(name: 'Top Up 2', code: 'tp02', stock_type: :deposit, balance: 3500)
+Stock.create(name: 'Withdraw 1', code: 'wd01', stock_type: :withdraw, balance: 2000)
 puts
 puts
 puts "Done!"
+
+
+
+

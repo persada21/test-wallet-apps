@@ -1,0 +1,22 @@
+
+<div class="row">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-body p-0">
+        <%= bootstrap_form_for(@top_up) do |form| %>
+          <div class="card-body">
+            <%= form.text_field :amount %>
+            <%= form.select :sender_id, options_for_select(Stock.all.map{|c| [c.code, c.id]}, form.object.sender_id), {}, label: 'sadas' %>
+            <%= form.select :receiver_id, options_for_select(Account.all.map{|c| [c.number, c.id]}, form.object.receiver_id), {}, label: 'sadas' %>
+          </div>
+          <!-- /.card-body -->
+
+          <div class="card-footer">
+            <button type="submit" class="btn btn-primary">Submit</button>
+            <%= link_to 'Cancel', accounts_path, class: "btn btn-default float-right" %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,21 @@
+
+<div class="row">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-body p-0">
+        <%= bootstrap_form_for(@account) do |form| %>
+          <div class="card-body">
+            <%= form.text_field :number %>
+            <%= form.select :user_id, options_for_select(User.all.map{|c| [c.name, c.id]}, form.object.user_id), {} %>
+          </div>
+          <!-- /.card-body -->
+
+          <div class="card-footer">
+            <button type="submit" class="btn btn-primary">Submit</button>
+            <%= link_to 'Cancel', accounts_path, class: "btn btn-default float-right" %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
