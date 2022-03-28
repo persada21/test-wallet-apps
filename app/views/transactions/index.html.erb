@@ -43,23 +43,29 @@
               </tr>
             </thead>
             <tbody>
-              <% @transactions.each do |transaction| %>
+              <% if @transactions.count.zero? %>
                 <tr>
-                  <td><%= transaction.id %></td>
-                  <td><%= transaction.subject %></td>
-                  <td><%= transaction.grant_type %></td>
-                  <td><%= transaction.sender_address %></td>
-                  <td><%= transaction.transactable_type %></td>
-                  <td><%= transaction.receiver_address %></td>
-                  <td><%= transaction.grant.amount %></td>
-                 <td><%= transaction.created_at&.strftime('%Y-%m-%d %H:%M:%S') %></td>
-                  <td style="width: 60px">
-                    <%= link_to 'Show', transaction, class: "btn btn-primary btn-xs", style: "width: 50px" %>
-                  </td>
-                  <td style="width: 60px">
-                    <%= link_to 'Delete', transaction, class: "btn btn-danger btn-xs", style: "width: 50px", method: :delete, data: { confirm: 'Are you sure?' } %>
-                  </td>
+                  <th colspan="7"> No data Found </td>
                 </tr>
+              <% else %>
+                <% @transactions.each do |transaction| %>
+                  <tr>
+                    <td><%= transaction.id %></td>
+                    <td><%= transaction.subject %></td>
+                    <td><%= transaction.grant_type %></td>
+                    <td><%= transaction.sender_address %></td>
+                    <td><%= transaction.transactable_type %></td>
+                    <td><%= transaction.receiver_address %></td>
+                    <td><%= transaction.grant.amount %></td>
+                  <td><%= transaction.created_at&.strftime('%Y-%m-%d %H:%M:%S') %></td>
+                    <td style="width: 60px">
+                      <%= link_to 'Show', transaction, class: "btn btn-primary btn-xs", style: "width: 50px" %>
+                    </td>
+                    <td style="width: 60px">
+                      <%= link_to 'Delete', transaction, class: "btn btn-danger btn-xs", style: "width: 50px", method: :delete, data: { confirm: 'Are you sure?' } %>
+                    </td>
+                  </tr>
+                <% end %>
               <% end %>
             </tbody>
           </table>

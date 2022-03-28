@@ -38,20 +38,26 @@
               </tr>
             </thead>
             <tbody>
-              <% @withdraws.each do |withdraw| %>
+              <% if @withdraws.count.zero? %>
                 <tr>
-                  <td><%= withdraw.id %></td>
-                  <td><%= withdraw.receiver_number %></td>
-                  <td><%= withdraw.amount %></td>
-                  <td><%= withdraw.created_at&.strftime('%Y %m %d') %></td>
-                 
-                  <td style="width: 60px">
-                    <%= link_to 'Show', withdraw, class: "btn btn-primary btn-xs", style: "width: 50px" %>
-                  </td>
-                  <td style="width: 60px">
-                    <%= link_to 'Delete', withdraw, class: "btn btn-danger btn-xs", style: "width: 50px", method: :delete, data: { confirm: 'Are you sure?' } %>
-                  </td>
+                  <th colspan="7"> No data Found </td>
                 </tr>
+              <% else %>
+                <% @withdraws.each do |withdraw| %>
+                  <tr>
+                    <td><%= withdraw.id %></td>
+                    <td><%= withdraw.receiver_number %></td>
+                    <td><%= withdraw.amount %></td>
+                    <td><%= withdraw.created_at&.strftime('%Y %m %d') %></td>
+                  
+                    <td style="width: 60px">
+                      <%= link_to 'Show', withdraw, class: "btn btn-primary btn-xs", style: "width: 50px" %>
+                    </td>
+                    <td style="width: 60px">
+                      <%= link_to 'Delete', withdraw, class: "btn btn-danger btn-xs", style: "width: 50px", method: :delete, data: { confirm: 'Are you sure?' } %>
+                    </td>
+                  </tr>
+                <% end %>
               <% end %>
             </tbody>
           </table>

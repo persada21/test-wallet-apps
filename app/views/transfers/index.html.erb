@@ -38,20 +38,26 @@
               </tr>
             </thead>
             <tbody>
-              <% @transfers.each do |transfer| %>
+              <% if @transfers.count.zero? %>
                 <tr>
-                  <td><%= transfer.id %></td>
-                  <td><%= transfer.receiver.number %></td>
-                  <td><%= transfer.amount %></td>
-                  <td><%= transfer.created_at&.strftime('%Y %m %d') %></td>
-                 
-                  <td style="width: 60px">
-                    <%= link_to 'Show', transfer, class: "btn btn-primary btn-xs", style: "width: 50px" %>
-                  </td>
-                  <td style="width: 60px">
-                    <%= link_to 'Delete', transfer, class: "btn btn-danger btn-xs", style: "width: 50px", method: :delete, data: { confirm: 'Are you sure?' } %>
-                  </td>
+                  <th colspan="7"> No data Found </td>
                 </tr>
+              <% else %>
+                <% @transfers.each do |transfer| %>
+                  <tr>
+                    <td><%= transfer.id %></td>
+                    <td><%= transfer.receiver.number %></td>
+                    <td><%= transfer.amount %></td>
+                    <td><%= transfer.created_at&.strftime('%Y %m %d') %></td>
+                  
+                    <td style="width: 60px">
+                      <%= link_to 'Show', transfer, class: "btn btn-primary btn-xs", style: "width: 50px" %>
+                    </td>
+                    <td style="width: 60px">
+                      <%= link_to 'Delete', transfer, class: "btn btn-danger btn-xs", style: "width: 50px", method: :delete, data: { confirm: 'Are you sure?' } %>
+                    </td>
+                  </tr>
+                <% end %>
               <% end %>
             </tbody>
           </table>

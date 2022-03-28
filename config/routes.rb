@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   resources :accounts
+  resources :stocks
   resources :top_ups
   resources :transfers
   resources :transactions
