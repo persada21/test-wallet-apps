@@ -9,14 +9,7 @@ class Transaction < ApplicationRecord
   enumerize :subject, in: %i[sender receiver]
 
   def calculate_balance
-    case subject
-    when 'sender'
-      transactable.update(balance: transactable.balance - grant.amount)
-    when 'receiver'
-      transactable.update(balance: transactable.balance + grant.amount)
-    else
-      ' Error'
-    end
+    CalculateServices.new(self).perform
   end
 
   def sender_address

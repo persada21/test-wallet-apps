@@ -18,7 +18,7 @@ class WithdrawsController < ApplicationController
     @withdraw.create_log_transactions
     respond_to do |format|
       if (@withdraw.sender.balance >= @withdraw.amount) && @withdraw.save
-        format.html { redirect_to @withdraw, notice: 'Top Up was successfully created.' }
+        format.html { redirect_to @withdraw, notice: 'Withdraw was successfully created.' }
         format.json { render :show, status: :created, location: @withdraw }
       else
         format.html { render :new }
@@ -30,7 +30,7 @@ class WithdrawsController < ApplicationController
   def destroy
     @withdraw.destroy
     respond_to do |format|
-      format.html { redirect_to transfer_url, notice: 'Top Up was successfully destroyed.' }
+      format.html { redirect_to transfer_url, notice: 'Withdraw was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

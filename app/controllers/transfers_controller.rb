@@ -19,7 +19,7 @@ class TransfersController < ApplicationController
     @transfer.create_log_transactions
     respond_to do |format|
       if (@transfer.sender.balance >= @transfer.amount) && @transfer.save
-        format.html { redirect_to @transfer, notice: 'Top Up was successfully created.' }
+        format.html { redirect_to @transfer, notice: 'Transfer was successfully created.' }
         format.json { render :show, status: :created, location: @transfer }
       else
         format.html { render :new }
@@ -31,7 +31,7 @@ class TransfersController < ApplicationController
   def destroy
     @transfer.destroy
     respond_to do |format|
-      format.html { redirect_to transfer_url, notice: 'Top Up was successfully destroyed.' }
+      format.html { redirect_to transfer_url, notice: 'Transfer was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
