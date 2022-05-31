@@ -10,11 +10,13 @@ class Transaction < ApplicationRecord
 
   def calculate_balance
     CalculateServices.new(self).perform
+  rescue CalculateServices::StandardError => e
+    e.record.errors.full_messages.to_sentence
   end
 
   def sender_address
     if grant_type == 'TopUp'
-      grant.sender.code    
+      grant.sender.code
     else
       grant.sender.number
     end
@@ -22,7 +24,7 @@ class Transaction < ApplicationRecord
 
   def receiver_address
     if grant_type == 'Withdraw'
-      grant.receiver.code    
+      grant.receiver.code
     else
       grant.receiver.number
     end

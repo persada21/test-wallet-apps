@@ -5,4 +5,4 @@ class Stock < ApplicationRecord
   validates :code, presence: true, uniqueness: true
 
   enumerize :stock_type, in: %i[topup withdraw], scope: true
-end 
+end

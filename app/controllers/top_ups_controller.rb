@@ -1,28 +1,25 @@
 class TopUpsController < ApplicationController
-  before_action :set_top_up, only: [:show, :edit, :update, :destroy]
+  before_action :set_top_up, only: %i[show edit update destroy]
 
   def index
-    @search   = TopUp.ransack(params[:q])
+    @search = TopUp.ransack(params[:q])
     @top_ups = @search.result(distinct: true)
   end
 
-  def show
-  end
+  def show; end
 
   def new
     @top_up = TopUp.new
   end
 
-  def edit
-  end
-  
+  def edit; end
+
   def create
     @top_up = TopUp.new(top_up_params)
     @top_up.create_log_transactions
     respond_to do |format|
-      if (@top_up.sender.balance >= @top_up.amount) && @top_up.save
+      if @top_up.save
         format.html { redirect_to @top_up, notice: 'Top Up was successfully created.' }
-        format.json { render :show, status: :created, location: @top_up }
       else
         format.html { render :new }
         format.json { render json: @top_up.errors, status: :unprocessable_entity }
@@ -51,13 +48,14 @@ class TopUpsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_top_up
-      @top_up = TopUp.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def top_up_params
-      params.require(:top_up).permit(:amount, :receiver_id, :sender_id, :code)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_top_up
+    @top_up = TopUp.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def top_up_params
+    params.require(:top_up).permit(:amount, :receiver_id, :sender_id, :code)
+  end
 end

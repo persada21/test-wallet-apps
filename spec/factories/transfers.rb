@@ -1,5 +1,5 @@
 FactoryBot.define do
-  factory :transfer do 
+  factory :transfer do
     sender factory: :account
     receiver factory: :account
 

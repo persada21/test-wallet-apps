@@ -1,4 +1,4 @@
-class StocksController < ApplicationController 
+class StocksController < ApplicationController
   def index
     @stocks = Stock.all
   end

@@ -1,3 +1,5 @@
+# create transaction log history
+
 module LogTransaction
   extend ActiveSupport::Concern
 

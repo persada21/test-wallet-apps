@@ -1,0 +1,27 @@
+AllCops:
+  NewCops: enable
+  Exclude:
+    - 'bin/*'
+    - 'test/**/*'
+    - 'db/**/*'
+    - 'config/**/*'
+    - 'node_modules/**/*'
+
+Metrics/BlockLength:
+  Exclude:
+    - 'spec/controllers/**/*'
+    - 'spec/services/**/*'
+    - 'config/environments/*'
+    - 'spec/swagger_helper.rb'
+    - 'config/routes.rb'
+    - 'config/initializers/devise.rb'
+
+
+Layout/EndOfLine:
+  EnforcedStyle: lf
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Style/Documentation:
+  Enabled: false

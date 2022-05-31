@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 describe CalculateServices do
-
   let(:create_top_up) do
     FactoryBot.create(:transaction_top_up)
   end
@@ -19,14 +18,13 @@ describe CalculateServices do
   end
 
   describe 'calculate balance' do
-
     it 'transaction top up' do
       top_up = create_top_up
       CalculateServices.new(top_up).perform
       expect(top_up.grant.amount.to_f).to eq(5000.0)
     end
 
-    it 'account got top up and calculate balance ' do 
+    it 'account got top up and calculate balance ' do
       top_up = create_top_up
       CalculateServices.new(top_up).perform
       expect(top_up.grant.receiver.balance.to_f).to eq(5000.0)
@@ -37,6 +35,5 @@ describe CalculateServices do
       CalculateServices.new(transfer).perform
       expect(transfer.transactable.balance.to_f).to eq(3000.0)
     end
-
   end
 end
